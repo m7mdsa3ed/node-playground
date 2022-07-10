@@ -14,15 +14,19 @@ module.exports = class FileCacheDriver {
 
 		const cacheKeyFile = path.join(cacheOptions.basePath, key);
 
-		const value = Filesystem.get(cacheKeyFile);
+		let value = Filesystem.get(cacheKeyFile);
+
+		value = this._getValue(value);
 
 		return value;
 	}
 
-	put(key, value, ttl) {
+	put(key, value) {
 		key = this._getHashKey(key);
 
 		const cacheKeyFile = path.join(cacheOptions.basePath, key);
+
+		value = this._setValue(value);
 
 		Filesystem.put(cacheKeyFile, value);
 	}
@@ -41,5 +45,21 @@ module.exports = class FileCacheDriver {
 		}
 
 		return key;
+	}
+
+	_setValue(value, options) {
+		value = {
+			value,
+			type: typeof value,
+			...options,
+		};
+
+		return JSON.stringify(value);
+	}
+
+	_getValue(value) {
+		value = JSON.parse(value);
+
+		return value.value;
 	}
 };

@@ -2,6 +2,19 @@ const fs = require("fs");
 const path = require("path");
 
 class Filesystem {
+	constructor() {
+		return new Proxy(this, {
+			get: (_this, prop) => {
+				if (_this[prop]) {
+					return _this[prop];
+				}
+
+				// Fallback to bult-in fs
+				return fs[prop];
+			},
+		});
+	}
+
 	get(path) {
 		return fs.readFileSync(path, "utf8");
 	}
