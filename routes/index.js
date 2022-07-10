@@ -20,10 +20,12 @@ router.post("/upload", (req, res, next) => {
 });
 
 router.get("/t", function (req, res, next) {
-	Cache.newInstance().put("name", "Moahmed");
+	Cache.put("name", "Moahmed");
 
 	res.send({
-		response: Cache.newInstance()._getHashKey("name"),
+		data: {
+			message: Cache.get("name"),
+		},
 	});
 });
 

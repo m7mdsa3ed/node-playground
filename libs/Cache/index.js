@@ -23,15 +23,9 @@ class Cache {
 				if (driverProperty) {
 					return driverProperty;
 				}
-
-				throw new Error("There no such a property");
 			},
 		});
 	}
-
-	static newInstance() {
-		return new this();
-	}
 }
 
-module.exports = Cache;
+module.exports = new Cache();
