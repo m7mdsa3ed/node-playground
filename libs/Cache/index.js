@@ -1,8 +1,9 @@
+const Config = require("../Config");
 const driverList = require("./Drivers");
 
 class Cache {
 	constructor() {
-		this.driver = process.env.CACHE_DRIVER;
+		this.driver = Config.get("cache.defaultDriver");
 
 		return new Proxy(this, {
 			get(target, property) {

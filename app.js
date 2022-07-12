@@ -5,9 +5,6 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
-const dotenv = require("dotenv");
-
-dotenv.config();
 
 const indexRouter = require("./routes/index");
 

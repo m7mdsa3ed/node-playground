@@ -1,5 +1,5 @@
 const express = require("express");
-const Cache = require("../libs/Cache");
+const Config = require("../libs/Config");
 const Filesystem = require("../libs/Filesystem");
 const router = express.Router();
 
@@ -20,13 +20,7 @@ router.post("/upload", (req, res, next) => {
 });
 
 router.get("/t", function (req, res, next) {
-	Cache.put("name", "Moahmed");
-
-	res.send({
-		data: {
-			message: Cache.get("name"),
-		},
-	});
+	res.send(Config.all());
 });
 
 module.exports = router;
