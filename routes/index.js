@@ -1,4 +1,5 @@
 const express = require("express");
+const Mail = require("../libs/Mail");
 const Config = require("../libs/Config");
 const Filesystem = require("../libs/Filesystem");
 const router = express.Router();
@@ -19,8 +20,14 @@ router.post("/upload", (req, res, next) => {
 	res.redirect("/");
 });
 
-router.get("/t", function (req, res, next) {
-	res.send(Config.all());
+router.get("/t", async function (req, res, next) {
+	const SendTestEmail = require("../mails/SendTestEmail");
+
+	Mail.to("m7md.sa3ed@hotmail.com").send(new SendTestEmail("Subject"));
+
+	res.json({
+		message: "Email Sent ",
+	});
 });
 
 module.exports = router;

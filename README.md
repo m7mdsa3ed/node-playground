@@ -5,11 +5,11 @@ Learn by practice
 ### To-Practice list
  
  - [x] File Upload
- - [ ] Caching 
+ - [x] Caching 
 	 - [x] File Driver
-	 - [ ] Database Driver
-	 - [ ] Redis Driver
  - [x] Configuration
- - [ ] Sending Emails
+ - [ ] Emails
+   - [x] Sending Emails
+   - [ ] Email body using Views   
  - [ ] Dealing with Job Queues / Workers
 
